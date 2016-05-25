@@ -1,44 +1,24 @@
-import React from 'react'
-import { render } from 'react-dom'
+
+import React from 'react' // JSXコンパイル後のソースで必要なので、たとえ本ソースファイルに明示的にReactが参照されていなくてもこのimportは必要.
 import { createStore } from 'redux'
-import { Provider, connect } from 'react-redux'
 
-function incrementCounter() {
-  return { type: 'INCREMENT_COUNTER' }
-}
-function decrementCounter() {
-  return { type: 'DECREMENT_COUNTER' }
-}
-function counter(state={counter:0}, action) {
-  switch (action.type) {
-    case 'INCREMENT_COUNTER':
-      return { counter: state.counter + 1 }
-    case 'DECREMENT_COUNTER':
-      return { counter: state.counter - 1 }
-    default:
-      return state
-  }
+import { Provider } from 'react-redux'
+
+import todoApp from './reducers'
+import App from './components/App'
+
+import { render } from 'react-dom'
+
+const initialState = {
+  todos: [],
+  visibilityFilter: 'SHOW_ALL'
 }
 
-let App = ({counter, dispatch}) => (
-    <div>
-      <div>{counter}</div>
-      <button onClick={() => dispatch(incrementCounter()) }>
-      +</button>
-      <button onClick={() => dispatch(decrementCounter()) }>
-      -</button>
-    </div>
-    )
-
-function mapStateToProps(state) {
-  return { counter: state.counter }
-}
-App = connect(mapStateToProps)(App)
-const store = createStore(counter, { counter: 0 })
+const store = createStore(todoApp, initialState);
 
 render(
     <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById('container')
-    )
+)

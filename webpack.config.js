@@ -12,7 +12,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
-  },  
+  },
   devtool: 'inline-source-map',
   plugins: [],
   module: {
@@ -34,7 +34,7 @@ module.exports = {
           cacheDirectory: true,
           presets: ['es2015']
         }
-      },      
+      },
       {
         test: /\.html$/,
         loader: 'file?name=[name].[ext]'

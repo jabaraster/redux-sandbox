@@ -3,7 +3,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "compile": "babel src/*.js -d dist"
+    "compile": "babel src -d dist"
   },
   "devDependencies": {
     "babel-core": "^6.9.0",
